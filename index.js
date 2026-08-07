@@ -5,8 +5,13 @@
  * @param {boolean} hasScroll - whether the wizard has a scroll of the spell
  * @returns {boolean} whether the wizard can cast the spell
  */
+
 function canCastSpell(isSpellPrepared, hasScroll) {
-  // TODO
+  if (isSpellPrepared || hasScroll) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -17,7 +22,13 @@ function canCastSpell(isSpellPrepared, hasScroll) {
  * @returns {boolean} whether the creature is hidden from the observer
  */
 function isHidden(hiding, aware) {
-  // TODO
+  if (hiding) {
+    return true;
+  } else if (!aware) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -28,7 +39,11 @@ function isHidden(hiding, aware) {
  * @returns {boolean} whether the strike hits
  */
 function doesStrikeHit(attack, ac) {
-  // TODO
+  if (attack >= ac) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -39,7 +54,7 @@ function doesStrikeHit(attack, ac) {
  * @returns {boolean} whether the strike is a critical hit
  */
 function doesStrikeCrit(attack, ac) {
-  // TODO
+  return attack - ac >= 10;
 }
 
 /**
@@ -51,7 +66,11 @@ function doesStrikeCrit(attack, ac) {
  * @returns {number} total hit points after healing
  */
 function heal(maxHp, currentHp, healAmount) {
-  // TODO
+  if (currentHp + healAmount < maxHp) {
+    return currentHp + healAmount;
+  } else {
+    return maxHp;
+  }
 }
 
 /**
@@ -71,7 +90,22 @@ function heal(maxHp, currentHp, healAmount) {
  * @returns {number} the character's proficiency bonus
  */
 function getProficiencyBonus(level, rank) {
-  // TODO
+  const bonusTrained = 2;
+  const bonusExpert = 4;
+  const bonusMaster = 6;
+  const bonusLegendary = 8;
+
+  if (rank === "trained") {
+    return level + bonusTrained;
+  } else if (rank === "expert") {
+    return level + bonusExpert;
+  } else if (rank === "master") {
+    return level + bonusMaster;
+  } else if (rank === "legendary") {
+    return level + bonusLegendary;
+  } else {
+    return level;
+  }
 }
 
 /**
